@@ -17,6 +17,8 @@ $ go test -v -cover -race ./...
 ```
 
 `square`: A pipeline that extracts the list of integers into a channel, and perform square operation on each integer.
+`md5sum/serial`: A pipeline with serialize (blocking) stages to calculate files MD5 sum.
+`md5sum/parallel`: A pipeline with parallel (non-blocking) stages to calculate files MD5 sum,
 
 ## LICENSE
 MIT. Refer to the [LICENSE](LICENSE) file.
