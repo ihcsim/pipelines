@@ -1,0 +1,4 @@
+package: github.com/ihcsim/pipelines
+import:
+- package: github.com/Sirupsen/logrus
+  version: ^0.11.0

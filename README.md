@@ -17,9 +17,11 @@ $ go test -v -cover -race ./...
 ```
 
 `square`: A pipeline that extracts the list of integers into a channel, and perform square operation on each integer.
-`md5sum/serial`: A pipeline with serialize (blocking) stages to calculate files MD5 sum.
-`md5sum/parallel`: A pipeline with parallel (non-blocking) stages to calculate files MD5 sum.
-`md5sum/bounded`: A pipeline with bounded number of goroutines in parallel stages too calculate files MD5 sum.
+`md5dir`: A pipeline that compute the MD5 checksum of all the files in a give directory.
+
+* `md5sum/serial`: Computes the MD5 checksum of files in a folder in sequential lexical order.
+* `md5sum/parallel`: Computes the MD5 checksum of files in a folder using a two-stage pipeline.
+* `md5sum/bounded`: Compute the MD5 checksum of files in a folder using a three-stage pipeline where the number of goroutines are bounded.
 
 ## LICENSE
 MIT. Refer to the [LICENSE](LICENSE) file.
