@@ -120,31 +120,14 @@ func TestMerge(t *testing.T) {
 
 func TestMergeDone(t *testing.T) {
 	done := make(chan struct{})
-	inputs := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 	in1, in2 := make(chan int), make(chan int)
+	defer close(in1)
+	defer close(in2)
 
-	// keep sending values to in1 and in2 until the loop reaches stopAtIndex
-	stopAtIndex := 6
-	go func() {
-		for index, input := range inputs {
-			if index == stopAtIndex {
-				close(done)
-			}
+	close(done)
 
-			if index%2 == 0 {
-				in1 <- input
-			}
-			in2 <- input
-		}
-		close(in1)
-		close(in2)
-	}()
-
-	maxResult := inputs[stopAtIndex] * inputs[stopAtIndex]
 	out := merge(done, in1, in2)
-	for actual := range out {
-		if actual > maxResult {
-			t.Errorf("Unexpected result. Expected result to be no greater than %d, but got %d", maxResult, actual)
-		}
+	if _, ok := <-out; ok {
+		t.Error("Channel should be closed")
 	}
 }

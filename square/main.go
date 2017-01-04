@@ -51,13 +51,14 @@ func merge(done <-chan struct{}, ins ...<-chan int) <-chan int {
 
 	fanIn := func(channel <-chan int) {
 		defer wait.Done()
+		select {
+		case <-done:
+			return
+		default:
+		}
 
 		for num := range channel {
-			select {
-			case out <- num:
-			case <-done:
-				return
-			}
+			out <- num
 		}
 	}
 
