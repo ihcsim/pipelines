@@ -1,4 +1,8 @@
 # pipelines
+
+
+[![Codeship Status for ihcsim/pipelines](https://app.codeship.com/projects/5b166f60-b4d0-0134-99ae-665c05a5a8f8/status?branch=master)](https://app.codeship.com/projects/193858)
+
 This project contains some Go concurrent pipeline examples based on this [article](https://blog.golang.org/pipelines).
 
 A pipeline is a kind of concurrent program. It is a series of stages connected by channels, where each stage is a group of goroutines running the same function. In each stage, the goroutines:
